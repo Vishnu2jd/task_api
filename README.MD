@@ -124,3 +124,29 @@ content-type: application/json
 content-length: 24
 
 {"latest_code":"019000"}
+
+
+
+vishnu@vishnus-MacBook-Pro task_api % curl -i -X POST http://127.0.0.1:3000/tasks \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW1lc2JvbmRAZXhhbXBsZS5jb20iLCJyb2xlIjoic3RhZmYiLCJleHAiOjE3ODE3Nzk2NTJ9._VpCX7xK0GDA49gHzN7lVxYEHr3xIg3venocTd86f4I" \
+  -d '{"title":"Exploit system", "description":"Unauthorized action", "priority":"high"}'
+HTTP/1.1 403 Forbidden
+content-length: 0
+date: Wed, 17 Jun 2026 10:47:49 GMT
+
+vishnu@vishnus-MacBook-Pro task_api % curl -i http://127.0.0.1:3000/tasks/view-my-tasks \
+  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW1lc2JvbmRAZXhhbXBsZS5jb20iLCJyb2xlIjoic3RhZmYiLCJleHAiOjE3ODE3Nzk2NTJ9._VpCX7xK0GDA49gHzN7lVxYEHr3xIg3venocTd86f4I"
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 462
+date: Wed, 17 Jun 2026 10:47:51 GMT
+
+{"user":{"email":"jamesbond@example.com","role":"staff"},"tasks":[{"id":"1","title":"Clean Aston Martin","status":"todo","priority":"high","assigned_to":"jamesbond@example.com"},{"id":"2","title":"Order Walther PPK","status":"todo","priority":"medium","assigned_to":"jamesbond@example.com"},{"id":"3","title":"Retrieve microfilm","status":"todo","priority":"low","assigned_to":"jamesbond@example.com"}],"summary":{"total_assigned_tasks":3},"cache":{"hit":false}}%                                                                                                                                                     vishnu@vishnus-MacBook-Pro task_api % curl -i http://127.0.0.1:3000/tasks/view-my-tasks \
+  -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW1lc2JvbmRAZXhhbXBsZS5jb20iLCJyb2xlIjoic3RhZmYiLCJleHAiOjE3ODE3Nzk2NTJ9._VpCX7xK0GDA49gHzN7lVxYEHr3xIg3venocTd86f4I"
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 461
+date: Wed, 17 Jun 2026 10:47:54 GMT
+
+{"user":{"email":"jamesbond@example.com","role":"staff"},"tasks":[{"id":"1","title":"Clean Aston Martin","status":"todo","priority":"high","assigned_to":"jamesbond@example.com"},{"id":"2","title":"Order Walther PPK","status":"todo","priority":"medium","assigned_to":"jamesbond@example.com"},{"id":"3","title":"Retrieve microfilm","status":"todo","priority":"low","assigned_to":"jamesbond@example.com"}],"summary":{"total_assigned_tasks":3},"cache":{"hit":true}}%                                                                                                                                                      vishnu@vishnus-MacBook-Pro task_api %
