@@ -1,3 +1,5 @@
+Note: Raw outputs in raw_output.txt file. 
+
 ## Seed users
 
 curl -i -X POST http://127.0.0.1:3000/seed/users
