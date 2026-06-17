@@ -1,0 +1,76 @@
+
+vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/seed/users
+HTTP/1.1 200 OK
+content-length: 0
+date: Wed, 17 Jun 2026 10:07:26 GMT
+
+
+vishnu@vishnus-MacBook-Pro ~ % curl -i http://127.0.0.1:3000/dev/email-logs/latest
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 24
+date: Wed, 17 Jun 2026 10:08:50 GMT
+
+{"latest_code":"709000"}%  
+
+
+vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/auth/verify-2fa \
+  -H "Content-Type: application/json" \
+  -d '{"login_challenge_id":"chal_a2be186373c94d3aa57a707083798aeb","code":"709000"}'
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 172
+date: Wed, 17 Jun 2026 10:10:00 GMT
+
+{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4MTc3NzQwMH0.angUa6CIgJ6y-QnAricKL60QIej9D3UlMPdeA7B5iQk"}%
+
+
+vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/tasks -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4MTc3NzQwMH0.angUa6CIgJ6y-QnAricKL60QIej9D3UlMPdeA7B5iQk" -H "Content-Type: application/json" -d '{"title":"Clean Aston Martin", "description":"Detail wash", "priority":"high"}'
+HTTP/1.1 201 Created
+content-type: application/json
+content-length: 90
+date: Wed, 17 Jun 2026 10:12:49 GMT
+
+{"id":"1","title":"Clean Aston Martin","status":"todo","priority":"high","assigned_to":""}%                                                                                                                 vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/tasks -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4MTc3NzQwMH0.angUa6CIgJ6y-QnAricKL60QIej9D3UlMPdeA7B5iQk" -H "Content-Type: application/json" -d '{"title":"Order Walther PPK", "description":"Equipment check", "priority":"medium"}'
+HTTP/1.1 201 Created
+content-type: application/json
+content-length: 91
+date: Wed, 17 Jun 2026 10:13:00 GMT
+
+{"id":"2","title":"Order Walther PPK","status":"todo","priority":"medium","assigned_to":""}%                                                                                                                vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/tasks -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4MTc3NzQwMH0.angUa6CIgJ6y-QnAricKL60QIej9D3UlMPdeA7B5iQk" -H "Content-Type: application/json" -d '{"title":"Retrieve microfilm", "description":"Infiltration task", "priority":"low"}'
+
+HTTP/1.1 201 Created
+content-type: application/json
+content-length: 89
+date: Wed, 17 Jun 2026 10:13:12 GMT
+
+{"id":"3","title":"Retrieve microfilm","status":"todo","priority":"low","assigned_to":""}%                                                                                                                  vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/tasks -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4MTc3NzQwMH0.angUa6CIgJ6y-QnAricKL60QIej9D3UlMPdeA7B5iQk" -H "Content-Type: application/json" -d '{"title":"Encrypt communications", "description":"Network setup", "priority":"high"}'
+HTTP/1.1 201 Created
+content-type: application/json
+content-length: 94
+date: Wed, 17 Jun 2026 10:13:18 GMT
+
+{"id":"4","title":"Encrypt communications","status":"todo","priority":"high","assigned_to":""}%                                                                                                             vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/tasks -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc4MTc3NzQwMH0.angUa6CIgJ6y-QnAricKL60QIej9D3UlMPdeA7B5iQk" -H "Content-Type: application/json" -d '{"title":"Rendezvous with Q", "description":"Tech updates", "priority":"medium"}'
+HTTP/1.1 201 Created
+content-type: application/json
+content-length: 91
+date: Wed, 17 Jun 2026 10:13:23 GMT
+
+{"id":"5","title":"Rendezvous with Q","status":"todo","priority":"medium","assigned_to":""}%
+
+
+vishnu@vishnus-MacBook-Pro ~ % curl -i -X POST http://127.0.0.1:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"jamesbond@example.com","password":"doubleseven007"}'
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 62
+date: Wed, 17 Jun 2026 10:15:13 GMT
+
+{"login_challenge_id":"chal_bde3874ceee948b4bbd30a5b7d7a11dd"}%                                                                                                                                             vishnu@vishnus-MacBook-Pro ~ % curl -i http://127.0.0.1:3000/dev/email-logs/latest
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 24
+date: Wed, 17 Jun 2026 10:15:20 GMT
+
+{"latest_code":"019000"}%                                                                                                                                                                                   vishnu@vishnus-MacBook-Pro ~ %
